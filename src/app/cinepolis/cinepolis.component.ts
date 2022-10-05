@@ -21,14 +21,17 @@ export class CinepolisComponent implements OnInit {
   Namecomprador: string = '';
   porcentaje15: number = 0;
   porcentaje10: number = 0;
+  Nota: string
+  mensajeactivar: boolean;
 
   imagenUrl: 'a'
 
   constructor() { }
 
   procesar(): void {
-    /* parseInt sirve convertir el valor de string a entero  */
+    /* parseInt sirve convertir el valor de string a entero, 12 es el valor del boleto  */
     this.costoUnidad = parseInt(this.boletosCantidad) * 12;
+    /* como limite son 7 , son los boletos a comprar */
     this.boletosP = parseInt(this.comprado) * 7;
     this.boletosPermitidos = parseInt(this.boletosCantidad);
 
@@ -43,17 +46,20 @@ export class CinepolisComponent implements OnInit {
     
 
     if (this.boletosPermitidos <= this.boletosP) {
-      if (
-        this.boletosCantidad == '3' ||
+      if (this.boletosCantidad == '3' ||
         this.boletosCantidad == '4' ||
         this.boletosCantidad == '5'
-      ) {
+      ) 
+      {
+        this.mensajeactivar= false;
         this.Namecomprador = this.comprador;
         this.precioTotal = this.costoUnidad - this.porcentaje10;
       } else if (this.boletosCantidad == '1' || this.boletosCantidad == '2') {
+        this.mensajeactivar= false;
         this.Namecomprador = this.comprador;
         this.precioTotal = this.costoUnidad;
       } else {
+        this.mensajeactivar= false;
         this.Namecomprador = this.comprador;
         this.precioTotal = this.costoUnidad - this.porcentaje15;
       }
@@ -63,7 +69,13 @@ export class CinepolisComponent implements OnInit {
       if (this.pagoTarjeta == 'no') {
         this.precioTotal
       } 
+      
     }
+    else
+      {
+        this.Nota= ("Lo sentimos , no puedes comprar más de 7 boletos");
+        this.mensajeactivar= true;
+      }
   }
 
   ngOnInit(): void {
