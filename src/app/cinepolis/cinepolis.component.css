@@ -1,0 +1,9 @@
+body{
+    background-color: #5c92ad;
+}
+
+#btVenta{
+   background: rgb(93, 31, 90);
+   background: linear-gradient(90deg,rgb(123, 76, 120)35%,rgba(255,255,255,1)100%);
+   color: rgb(0, 0, 0);
+}
